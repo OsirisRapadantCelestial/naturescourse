@@ -5,9 +5,7 @@ include('shared.lua')
 
 function ENT:Initialize()
 	self:SetModel("models/hunter/blocks/cube025x05x025.mdl")
-	self:PhysicsInitBox(bo,ao)
-	self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
-	self:SetUseType(SIMPLE_USE)
+	self:SetCollisionGroup(COLLISION_GROUP_NONE)
 	self.Phys = self:GetPhysicsObject()
 	self.Phys:Wake()
 
