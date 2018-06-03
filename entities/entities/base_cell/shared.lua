@@ -4,7 +4,7 @@ ENT.PrintName	= "Base Cell"
 ENT.Author		= "StarLight"
 ENT.Contact		= ""
 ENT.MaxSpeed 	= 40
-ENT.ShipSpeed = 0
+ENT.ShipSpeed = 1
 ENT.Category = "ORC"
 ENT.Spawnable = true
 function ENT:OnRemove()

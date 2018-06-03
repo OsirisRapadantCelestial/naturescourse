@@ -46,13 +46,17 @@ function ENT:Think()
 		if pl:KeyDown(IN_ATTACK) then
 			if (self.lastattack || 0 ) < CurTime() then
 				self.lastattack = CurTime() + 0.5
+				local pos, ang  = self:GetPos(), self:GetAngles():Forward()
 				local tr = util.TraceLine( {
-					start = self:GetPos(),
-					endpos = self:GetPos() + self:GetAngles():Forward() * 100,
-					filter = {pl, self},
+					start = pos,
+					endpos = pos + ang * 100, 
+					filter = { self, pl },
 				} )
+				print("sup")
 				if tr.Hit then
-					if tr.Entity and IsValid(tr.Entity() ) then
+					print("hit")
+					if IsValid(tr.Entity ) then
+						print("boos")
 						local ent = tr.Entity
 						if string.find(ent:GetClass(), "food_") then
 							-- Check to see if carnivorous, 
