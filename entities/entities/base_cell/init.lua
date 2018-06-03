@@ -46,8 +46,8 @@ function ENT:Think()
 		if pl:KeyDown(IN_ATTACK) then
 			if (self.lastattack || 0 ) < CurTime() then
 				self.lastattack = CurTime() + 0.5
-				local pos, ang  = self:GetPos(), self:GetAngles():Forward()
-				local tr = util.TraceLine( {
+				local pos, ang  = self:GetPos() + self:GetAngles():Up() * 5, self:GetAngles():Forward()
+				local tr = util.TraceHull( {
 					start = pos,
 					endpos = pos + ang * 100, 
 					filter = { self, pl },
