@@ -1,5 +1,8 @@
 local plymeta = FindMetaTable( "Player" )
 
+HUNGER_MAX = 100
+HUNGER_MIN = 0
+
 if SERVER then
 
     util.AddNetworkString( "Hunger" )
@@ -10,6 +13,8 @@ if SERVER then
     end
 
     function plymeta:SetHunger( amount )
+		amount = math.Clamp(amount, HUNGER_MIN, HUNGER_MAX)
+		self.stats["Hunger"] = amount
 		net.Start("Hunger")
 			net.WriteDouble(amount)
 		net.Send( self )
@@ -25,5 +30,6 @@ else
 end
 
 function plymeta:GetHunger()
+	if !self.stats then self.stats = {} end
 	return self.stats["Hunger"] || 0
 end

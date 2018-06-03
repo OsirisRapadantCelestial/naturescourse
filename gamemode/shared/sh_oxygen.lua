@@ -1,7 +1,8 @@
 
 Environment = Environment || {}
 
-
+OXYGEN_MAX = 200
+OXYGEN_MIN = 0
 if SERVER then
 
     util.AddNetworkString( "Oxygen" )
@@ -18,6 +19,7 @@ if SERVER then
     end
 
     function SetOxygen( amount )
+		amount = math.Clamp(amount, OXYGEN_MIN, OXYGEN_MAX)
 		Environment["Oxygen"] = amount
 		net.Start("Oxygen")
 			net.WriteDouble(amount)
@@ -33,6 +35,6 @@ else
 end
 
 function GetOxygen()
-	return Environment["Oxygen"] || 0
+	return Environment["Oxygen"] || 100
 end
 

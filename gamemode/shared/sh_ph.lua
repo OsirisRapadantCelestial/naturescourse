@@ -2,6 +2,9 @@ if SERVER then
 
     util.AddNetworkString( "pH" )
 
+	PH_MIN = -18
+	PH_MAX = 14
+	
     function SyncPH( ply )
         net.Start( "pH" )
 			net.WriteDouble(GetPH())
