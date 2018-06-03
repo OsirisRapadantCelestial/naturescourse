@@ -9,8 +9,8 @@ function ENT:Initialize()
 	self.Phys = self:GetPhysicsObject()
 	self.Phys:Wake()
 
-	local food = math.random( 5, 10 )
-	self:SetAmount( tonumber( food ) )
+	local food = 
+	self:SetAmount( math.random( 5, 10 )  )
 end
 
 

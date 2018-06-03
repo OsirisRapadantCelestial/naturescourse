@@ -9,4 +9,11 @@ end
 
 function ENT:SetupDataTables()
 	self:NetworkVar("Int", 0, "Amount")
+	if SERVER then
+		self:NetworkVarNotify("Amount", self.OnAmountChange)
+	end
+end
+
+function ENT:OnAmountChange(name, old, new)
+	self:SetModelScale(new, 0.5)
 end
