@@ -12,13 +12,13 @@ if SERVER then
     function plymeta:SetFood( amount )
 		net.Start("Food")
 			net.WriteDouble(amount)
-		net.Broadcast()
+		net.Send( self )
     end
 
 else
 
     net.Receive( "Food", function( len, pl )
-		pl.stats["Food"] = net.ReadDouble()
+		LocalPlayer().stats["Food"] = net.ReadDouble()
     end)
 
 end
