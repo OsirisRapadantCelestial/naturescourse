@@ -55,8 +55,9 @@ function ENT:Think()
 					if tr.Entity and IsValid(tr.Entity() ) then
 						local ent = tr.Entity
 						if string.find(ent:GetClass(), "food_") then
+							-- Check to see if carnivorous, 
 							ent:SetAmount(ent:GetAmount() - 1)
-							
+							pl:AddHunger(1)
 						end
 					end
 				end
