@@ -19,5 +19,18 @@ function GM:PlayerSpawn(ply)
 	ent:Spawn()
 	ent:Activate()
 	ent:SetPlayer(ply)
+	ply.Entity = ent
 	ply:SpectateEntity(ent)
+	
+	
+	for x = 1, 100 do
+		local food = ents.Create("food_meat")
+		food:SetPos(Vector(math.Rand(-1024, 1024),math.Rand(-1024, 1024),0))
+		food:SetModel("models/weapons/w_bugbait.mdl")
+		food:Spawn()
+		food:Activate()
+	end
+	
+	
+	
 end
