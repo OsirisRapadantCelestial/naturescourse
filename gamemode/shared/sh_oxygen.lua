@@ -34,4 +34,3 @@ end
 function GetOxygen()
 	return Environment["Oxygen"] || 0
 end
-
