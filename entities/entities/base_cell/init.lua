@@ -76,6 +76,7 @@ function ENT:Think()
 		elseif pl:KeyDown(IN_BACK) then
 			self.Speed = math.Clamp( (self.Speed || 0) - 1, -self.MaxSpeed, self.MaxSpeed)
 		else
+			if !self.Speed then self.Speed = 0 end
 			self.Speed = math.Approach(self.Speed, 0, 4)
 		end
 
