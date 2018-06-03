@@ -1,0 +1,11 @@
+"naturalselection"
+{
+    "base"		        "base"
+    "title"  		      "Natural Selection"
+    "version"         "1"
+    "menusystem"      "1"
+
+    "author_name"   	"OsirisRapdantCelestial Team - Anthony Fuller, Star, Sion"
+    "author_email"  	"contact@osirisrapadantcelestial.team"
+    "author_url"    	"https://osirisrapadantcelestial.team"
+}
