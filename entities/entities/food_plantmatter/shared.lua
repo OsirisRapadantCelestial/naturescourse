@@ -1,6 +1,6 @@
 ENT.Type = "anim"
 ENT.Base = "base_anim"
-ENT.PrintName	= "Meat Chunks"
+ENT.PrintName	= "Plant Matter"
 ENT.Author		= "Anthony Fuller"
 ENT.Category = "ORC"
 ENT.Spawnable = true
