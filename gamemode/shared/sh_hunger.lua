@@ -5,8 +5,8 @@ if SERVER then
     util.AddNetworkString( "Hunger" )
 
     function plymeta:AddHunger( amount )
-		local hunger = GetHunger()
-		SetHunger(hunger + amount)
+		local hunger = self:GetHunger()
+		self:SetHunger(hunger + amount)
     end
 
     function plymeta:SetHunger( amount )

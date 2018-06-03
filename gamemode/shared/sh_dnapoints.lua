@@ -5,8 +5,8 @@ if SERVER then
     util.AddNetworkString( "DNA" )
 
     function plymeta:AddDNA( amount )
-		local dnapoints = GetDNA()
-		SetDNA(dnapoints + amount)
+		local dnapoints = self:GetDNA()
+		self:SetDNA(dnapoints + amount)
     end
 
     function plymeta:SetDNA( amount )

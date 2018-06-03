@@ -4,6 +4,7 @@ if SERVER then
 
     function SyncTemperature( ply )
         net.Start( "Temperature" )
+			net.WriteDouble(GetTemperature())
         net.Send(ply)
     end
 

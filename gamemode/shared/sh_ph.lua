@@ -4,6 +4,7 @@ if SERVER then
 
     function SyncPH( ply )
         net.Start( "pH" )
+			net.WriteDouble(GetPH())
         net.Send(ply)
     end
 
