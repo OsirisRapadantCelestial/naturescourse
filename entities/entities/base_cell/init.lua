@@ -3,7 +3,7 @@ AddCSLuaFile("shared.lua")
 
 include('shared.lua')
 
-local bo,ao = Vector(-60,-60,-60),Vector(60,60,60)
+local bo,ao = Vector(-25,-25,-25),Vector(25,25,25)
 local up	= Vector(0,0,1)
 local zero  = Vector(0,0,0)
 
@@ -16,8 +16,6 @@ end
 function ENT:Initialize()
 	self:SetModel("models/devinity2/models/keitarocos/dv2_destroyer1.mdl")
 	self:PhysicsInitBox(bo,ao)
-	--self:SetMoveCollide(MOVECOLLIDE_FLY_SLIDE)
-	--self:SetSolid(SOLID_VPHYSICS)
 	self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
 	self:SetUseType(SIMPLE_USE)
 	self.Phys = self:GetPhysicsObject()
@@ -39,11 +37,11 @@ end
 
 
 function ENT:Think()
-	if (IsValid(self.Player) and self.Player:Alive()) then
-		local pl 	= self.Player
+	if self:GetPlayer() then
+		local pl 	= self:GetPlayer()
 		if pl:KeyDown(IN_ATTACK2) then
 			print("boom")
-			self.storedangle = selfGetPlayer():GetAimVector()
+			self.storedangle = self:GetPlayer():GetAimVector()
 		end
 		
 		if pl:KeyDown(IN_FORWARD) then
