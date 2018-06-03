@@ -7,7 +7,7 @@ local bo,ao = Vector(-25,-25,-25),Vector(25,25,25)
 local up	= Vector(0,0,1)
 local zero  = Vector(0,0,0)
 
-function ENT:OnRemove()	
+function ENT:OnRemove()
 end
 
 function ENT:KeyValue(key,value)
@@ -42,24 +42,21 @@ function ENT:Think()
 		if pl:KeyDown(IN_ATTACK2) then
 			self.storedangle = pl:EyeAngles()
 		end
-		
+
 		if pl:KeyDown(IN_ATTACK) then
 			if (self.lastattack || 0 ) < CurTime() then
 				self.lastattack = CurTime() + 0.5
 				local pos, ang  = self:GetPos(), self:GetAngles():Forward()
 				local tr = util.TraceLine( {
 					start = pos,
-					endpos = pos + ang * 100, 
+					endpos = pos + ang * 100,
 					filter = { self, pl },
 				} )
-				print("sup")
 				if tr.Hit then
-					print("hit")
 					if IsValid(tr.Entity ) then
-						print("boos")
 						local ent = tr.Entity
 						if string.find(ent:GetClass(), "food_") then
-							-- Check to see if carnivorous, 
+							-- Check to see if carnivorous,
 							ent:SetAmount(ent:GetAmount() - 1)
 							pl:AddHunger(1)
 						end
@@ -67,14 +64,14 @@ function ENT:Think()
 				end
 			end
 		end
-		
-		
+
+
 		if pl:KeyDown(IN_FORWARD) then
 			self.Speed = math.Clamp((self.Speed || 0) + 1, -self.MaxSpeed, self.MaxSpeed)
 		elseif pl:KeyDown(IN_BACK) then
 			self.Speed = math.Clamp( (self.Speed || 0) - 1, -self.MaxSpeed, self.MaxSpeed)
 		end
-			
+
 		if !self.storedangle then self.storedangle = self:GetAngles() end
 	end
 end
@@ -95,7 +92,7 @@ function ENT:PhysicsSimulate(phys,delta)
     ShadowParams.pos         = self:GetPos() + self:GetForward() * ( (self.Speed || 0) *  (self.ShipSpeed || 10))
     ShadowParams.angle         = self.storedangle
     ShadowParams.deltatime     = delta
-    
+
     phys:ComputeShadowControl( ShadowParams )
 end
 
