@@ -6,7 +6,7 @@ if SERVER then
 
     function plymeta:AddFood( amount )
 		local food = self:GetFood()
-		SetFood(food + amount)
+		self:SetFood(food + amount)
     end
 
     function plymeta:SetFood( amount )
@@ -39,5 +39,5 @@ function plymeta:GetFoodLevel()
 		val = (x+2)^2
 	end
 	
-	return x
+	return x, val, (x+1)^2
 end

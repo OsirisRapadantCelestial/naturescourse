@@ -15,8 +15,12 @@ end
 
 function ENT:Initialize()
 	self:SetModel("models/hunter/blocks/cube025x05x025.mdl")
-	self:PhysicsInitBox(bo,ao)
 	self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
+	
+	self:PhysicsInit(SOLID_VPHYSICS)
+    self:SetMoveType(MOVETYPE_VPHYSICS)
+    self:SetSolid(SOLID_VPHYSICS)
+	
 	self.Phys = self:GetPhysicsObject()
 	self.Phys:EnableMotion(true)
 	self.Phys:EnableGravity(false)
@@ -59,6 +63,7 @@ function ENT:Think()
 							-- Check to see if carnivorous,
 							ent:SetAmount(ent:GetAmount() - 1)
 							pl:AddHunger(1)
+							pl:AddFood(0.5)
 						end
 					end
 				end
@@ -70,6 +75,8 @@ function ENT:Think()
 			self.Speed = math.Clamp((self.Speed || 0) + 1, -self.MaxSpeed, self.MaxSpeed)
 		elseif pl:KeyDown(IN_BACK) then
 			self.Speed = math.Clamp( (self.Speed || 0) - 1, -self.MaxSpeed, self.MaxSpeed)
+		else
+			self.Speed = math.Approach(self.Speed, 0, 4)
 		end
 
 		if !self.storedangle then self.storedangle = self:GetAngles() end
