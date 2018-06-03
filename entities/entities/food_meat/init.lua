@@ -8,8 +8,6 @@ function ENT:Initialize()
 	self:SetCollisionGroup(COLLISION_GROUP_NONE)
 	self.Phys = self:GetPhysicsObject()
 	self.Phys:Wake()
-
-	local food = 
 	self:SetAmount( math.random( 5, 10 )  )
 end
 
