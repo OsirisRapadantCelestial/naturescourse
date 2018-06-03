@@ -1,6 +1,6 @@
 local plymeta = FindMetaTable( "Player" )
 
-local foodtype = {
+local foodtypes = {
     ["meat"] = {
         ["Carnivore"] = true,
         ["Omnivore"] = true,
@@ -12,19 +12,5 @@ local foodtype = {
 }
 
 function plymeta:CanEat( foodtype )
-    if foodtype == "meat" && self.stats["eat"] == "Carnivore" then
-        return true
-    else
-        return false
-    end
-
-    if foodtype == "plant" && self.stats["eat"] == "Herbivore" then
-        return true
-    else
-        return false
-    end
-
-    if self.stats["eat"] == "Omnivore" then
-        return true
-    end
+	return foodtypes[foodtype][self.stats["eat"]]
 end
