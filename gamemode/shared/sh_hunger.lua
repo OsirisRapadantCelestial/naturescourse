@@ -18,11 +18,11 @@ if SERVER then
 else
 
     net.Receive( "Hunger", function( len, pl )
-		ply.stats["Hunger"] = net.ReadDouble()
+		pl.stats["Hunger"] = net.ReadDouble()
     end)
 
 end
 
-function GetHunger()
-	return ply.stats["Hunger"] || 0
+function plymeta:GetHunger()
+	return self.stats["Hunger"] || 0
 end
