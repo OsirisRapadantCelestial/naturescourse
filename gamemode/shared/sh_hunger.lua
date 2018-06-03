@@ -4,11 +4,6 @@ if SERVER then
 
     util.AddNetworkString( "Hunger" )
 
-    function plymeta:SyncHunger( ply )
-        net.Start( "Hunger" )
-        net.Send(ply)
-    end
-
     function plymeta:AddHunger( amount )
 		local hunger = GetHunger()
 		SetHunger(hunger + amount)

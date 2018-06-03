@@ -42,6 +42,28 @@ function ENT:Think()
 		if pl:KeyDown(IN_ATTACK2) then
 			self.storedangle = pl:EyeAngles()
 		end
+		
+		if pl:KeyDown(IN_ATTACK) then
+			if (self.lastattack || 0 ) < CurTime() then
+				self.lastattack = CurTime() + 0.5
+				local tr = util.TraceLine( {
+					start = self:GetPos(),
+					endpos = self:GetPos() + self:GetAngles():Forward() * 100,
+					filter = {pl, self},
+				} )
+				if tr.Hit then
+					if tr.Entity and IsValid(tr.Entity() ) then
+						local ent = tr.Entity
+						if string.find(ent:GetClass(), "food_") then
+							ent:SetAmount(ent:GetAmount() - 1)
+							
+						end
+					end
+				end
+			end
+		end
+		
+		
 		if pl:KeyDown(IN_FORWARD) then
 			self.Speed = math.Clamp((self.Speed || 0) + 1, -self.MaxSpeed, self.MaxSpeed)
 		elseif pl:KeyDown(IN_BACK) then

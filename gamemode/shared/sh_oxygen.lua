@@ -8,6 +8,7 @@ if SERVER then
 
     function SyncOxygen( ply )
         net.Start( "Oxygen" )
+			net.WriteDouble(GetOxygen())
         net.Send(ply)
     end
 
@@ -34,3 +35,4 @@ end
 function GetOxygen()
 	return Environment["Oxygen"] || 0
 end
+
