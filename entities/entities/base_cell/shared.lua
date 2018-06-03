@@ -10,6 +10,6 @@ ENT.Spawnable = true
 function ENT:OnRemove()
 end
 
-function ENT:GetPlayer()
-	return self.Player
+function ENT:SetupDataTables()
+	self:NetworkVar("Entity", 0, "Player")
 end
