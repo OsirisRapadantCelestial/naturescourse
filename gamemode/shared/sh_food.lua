@@ -5,7 +5,7 @@ if SERVER then
     util.AddNetworkString( "Food" )
 
     function plymeta:AddFood( amount )
-		local food = GetFood()
+		local food = self:GetFood()
 		SetFood(food + amount)
     end
 
@@ -18,6 +18,7 @@ if SERVER then
 else
 
     net.Receive( "Food", function( len, pl )
+        if not LocalPlayer().stats then LocalPlayer().stats = {} end
 		LocalPlayer().stats["Food"] = net.ReadDouble()
     end)
 

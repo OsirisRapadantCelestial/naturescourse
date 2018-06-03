@@ -15,7 +15,7 @@ function ENT:SetupDataTables()
 end
 
 function ENT:OnAmountChange(name, old, new)
-	if new == 0 then
+	if new < 1 then
 		self:Remove()
 	end
 	self:SetModelScale(new, 0.5)

@@ -18,6 +18,7 @@ if SERVER then
 else
 
     net.Receive( "Hunger", function( len, pl )
+        if not LocalPlayer().stats then LocalPlayer().stats = {} end
 		LocalPlayer().stats["Hunger"] = net.ReadDouble()
     end)
 
