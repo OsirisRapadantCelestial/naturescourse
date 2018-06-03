@@ -10,7 +10,7 @@ end
 
 function GM:PlayerSpawn(ply)
 	ply:SetPos(Vector(0,0,0))
-	GM:PlayerSpawnAsSpectator(ply)
+	GAMEMODE:PlayerSpawnAsSpectator(ply)
 	ply:Spectate( OBS_MODE_CHASE )
 	
 	local ent =  ents.Create("base_cell")
