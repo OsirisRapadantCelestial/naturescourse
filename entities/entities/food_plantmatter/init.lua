@@ -8,6 +8,7 @@ function ENT:Initialize()
 	self:SetCollisionGroup(COLLISION_GROUP_NONE)
 	self.Phys = self:GetPhysicsObject()
 	self.Phys:Wake()
+	self.Phys:EnableMotion(false)
 	self:SetAmount( math.random( 4, 9 )  )
 	self.foodType = "plant"
 end

@@ -18,6 +18,7 @@ if SERVER then
 else
 
     net.Receive( "DNA", function( len, pl )
+        if not LocalPlayer().stats then LocalPlayer().stats = {} end
 		LocalPlayer().stats["DNA"] = net.ReadDouble()
     end)
 
