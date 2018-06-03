@@ -14,7 +14,7 @@ function ENT:KeyValue(key,value)
 end
 
 function ENT:Initialize()
-	self:SetModel("models/devinity2/models/keitarocos/dv2_destroyer1.mdl")
+	self:SetModel("models/hunter/blocks/cube025x05x025.mdl")
 	self:PhysicsInitBox(bo,ao)
 	self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
 	self:SetUseType(SIMPLE_USE)

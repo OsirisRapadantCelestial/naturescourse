@@ -13,12 +13,11 @@ function GM:PlayerSpawn(ply)
 	GM:PlayerSpawnAsSpectator(ply)
 	ply:Spectate( OBS_MODE_CHASE )
 	
-	
 	local ent =  ents.Create("base_cell")
 	ent:SetPos(Vector(0,0,0))
-	
+	ent:SetModel("models/hunter/blocks/cube025x05x025.mdl")
 	ent:Spawn()
 	ent:Activate()
-	
+	ent:SetPlayer(ply)
 	ply:SpectateEntity(ent)
 end
