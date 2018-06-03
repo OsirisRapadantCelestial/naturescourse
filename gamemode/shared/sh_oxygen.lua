@@ -1,6 +1,6 @@
-function GetOxygen()
 
-end
+Environment = Environment || {}
+
 
 if SERVER then
 
@@ -12,19 +12,26 @@ if SERVER then
     end
 
     function AddOxygen( amount )
-
+		local oxy = GetOxygen()
+		SetOxygen(oxy + amount)
     end
 
     function SetOxygen( amount )
-
+		Environment["Oxygen"] = amount
+		net.Start("Oxygen")
+			net.WriteDouble(amount)
+		net.Broadcast()
     end
 
 else
 
     net.Receive( "Oxygen", function( len, pl )
-        local enviroment = {
-            oxygen = tonumber( GetOxygen() ),
-        }
-    end )
+		Environment["Oxygen"] = net.ReadDouble()
+    end)
 
 end
+
+function GetOxygen()
+	return Environment["Oxygen"] || 0
+end
+
