@@ -50,11 +50,13 @@ function ENT:Think()
 		if pl:KeyDown(IN_ATTACK) then
 			if (self.lastattack || 0 ) < CurTime() then
 				self.lastattack = CurTime() + 0.5
-				local pos, ang  = self:GetPos() + self:GetAngles():Up() * 5, self:GetAngles():Forward()
-				local tr = util.TraceHull( {
+				local pos, ang  = self:GetPos(), self:GetAngles():Forward()
+				/*local tr = util.TraceHull( {
 					start = pos,
 					endpos = pos + ang * 100,
 					filter = { self, pl },
+					mins = Vector(-10, -10,-10),
+					max = Vector(10,10,10),
 				} )
 				if tr.Hit then
 					if IsValid(tr.Entity ) then
@@ -66,7 +68,20 @@ function ENT:Think()
 							pl:AddFood(0.5)
 						end
 					end
+				end*/
+				local ang = self:GetAngles()
+				local pos1 = self:GetPos() - ang:Right() * 10
+				local pos2  = self:GetPos() + ang:Up() * 10 + ang:Forward() * 100 + ang:Right() * 20
+				
+				for index, ent in pairs(ents.FindInBox( pos1, pos2 )) do
+					if string.find(ent:GetClass(), "food_") then
+						ent:SetAmount(ent:GetAmount() - 1)
+						pl:AddHunger(1)
+						pl:AddFood(0.5)
+					end
 				end
+				
+				
 			end
 		end
 
