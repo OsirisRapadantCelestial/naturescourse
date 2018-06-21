@@ -50,3 +50,19 @@ end
 auto.AddLuaCSFolder("client",true)
 auto.AddLuaSVFolder("server",true)
 auto.AddLuaSHFolder("shared",true)
+
+ADAPTATIONS = {}
+DEFAULTCELL = {}
+function RegisterAdaptation(tbl)
+	ADAPTATIONS[tbl.Name] = tbl
+	if tbl.Default then
+		DEFAULTCELL[tbl.type] = tbl.Name
+	end
+end
+
+auto.AddLuaSHFolder("adaptations",true)
+
+
+
+
+
