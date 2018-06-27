@@ -32,5 +32,5 @@ else
 end
 
 function GetPH()
-	return Environment["pH"] || 0
+	return Environment["pH"] || 6
 end

@@ -40,9 +40,12 @@ end
 
 function GM:CalcView( ply, pos, angles, fov)
 	if !ply.FakeEntity then return end
-	local view = {}
-	view.pos = ply.FakeEntity:GetPos() - (ply:GetAimVector()* 100)
-	view.angles = angles
-	view.fov = fov
-	return view
+	
+	if IsValid(ply.FakeEntity) then
+		local view = {}
+		view.pos = ply.FakeEntity:GetPos() - (ply:GetAimVector()* 100)
+		view.angles = angles
+		view.fov = fov
+		return view
+	end
 end

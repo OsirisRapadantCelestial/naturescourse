@@ -12,4 +12,10 @@ function GM:PlayerSpawn(ply)
 	ply:SetPos(Vector(0,0,0))
 	GAMEMODE:PlayerSpawnAsSpectator(ply)
 	ply:Spectate( OBS_MODE_CHASE )
+	
+	if !ROUNDSTARTED then
+		if #player.GetAll() > 1 then
+			StartRound()
+		end
+	end
 end

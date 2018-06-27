@@ -1,15 +1,11 @@
 local tbl = {}
-tbl.Name = "Basic Body"
+tbl.Name = "Basic Fin"
 tbl.Model = "models/hunter/blocks/cube025x05x025.mdl"
-tbl.type = "Body"
 tbl.desc = ""
+tbl.type = "Fin"
+tbl.scale = 0.5
 tbl.default = true
-tbl.slots = {
-	[1] = {
-		pos = Vector(0,0, 10),
-		ang = Angle(0,0,0),
-	}
-}
+tbl.slots = nil
 tbl.effects = {
 	["HUD"] = function(self)
 	
@@ -25,6 +21,9 @@ tbl.effects = {
 	end,
 	["Evolve"] = function(self)
 	
+	end,
+	["Speed"] = function(self, speed)
+		return speed *2
 	end,
 }
 RegisterAdaptation(tbl)
