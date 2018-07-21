@@ -13,7 +13,7 @@ function StartRound()
 		ent:SetPlayer(ply)
 		ply.Entity = ent
 		ply:SpectateEntity(ent)
-	
+
 		for x = 1, 100 do
 			local food = ents.Create("food_meat")
 			food:SetPos(Vector(math.Rand(-1024, 1024),math.Rand(-1024, 1024),0))
@@ -21,20 +21,21 @@ function StartRound()
 			food:Spawn()
 			food:Activate()
 		end
-		
+
 		ply.stats = {
 			["eat"] = "Omnivore",
 			["Body"] = "Basic Body",
 			["Slots"] = {},
 			["PH"] = math.random(5,7),
 			["Oxygen"] = math.random(90, 110)
+			["Temperature"] = math.random(18,23)
 		}
 		net.Start("SendStats")
 			net.WriteEntity(ply)
 			net.WriteTable(ply.stats)
 		net.Broadcast()
 	end
-	
+
 	SetPH(math.random(5,7))
 	SetOxygen(100)
 	timer.Simple(300, function()
@@ -57,6 +58,3 @@ hook.Add("PlayerDisconnected", "sadasda", function(ply)
 	ply.Entity:Remove()
 	ply.Entity = nil
 end)
-
-
-

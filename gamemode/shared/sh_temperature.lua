@@ -1,3 +1,6 @@
+TEMP_MAX = 100
+TEMP_MIN = 0
+TEMP_BANDS = 5
 if SERVER then
 
     util.AddNetworkString( "Temperature" )
@@ -14,6 +17,7 @@ if SERVER then
     end
 
     function SetTemperature( amount )
+        amount = math.Clamp(amount, TEMP_MIN, TEMP_MAX)
 		Environment["Temperature"] = amount
 		net.Start("Temperature")
 			net.WriteDouble(amount)
