@@ -52,7 +52,11 @@ hook.Add("PlayerDeath", "remove entity", function(ply)
 	ply.Entity = nil
 end)
 
-
+hook.Add("PlayerDisconnected", "sadasda", function(ply)
+	ply.OutOfGame = true
+	ply.Entity:Remove()
+	ply.Entity = nil
+end)
 
 
 
