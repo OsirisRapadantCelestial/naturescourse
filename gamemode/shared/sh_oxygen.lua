@@ -3,6 +3,7 @@ Environment = Environment || {}
 
 OXYGEN_MAX = 200
 OXYGEN_MIN = 0
+OXYGEN_BANDS = 15
 if SERVER then
 
     util.AddNetworkString( "Oxygen" )
