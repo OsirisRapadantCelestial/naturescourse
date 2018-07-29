@@ -3,12 +3,18 @@ events = {
         PH = -3,
     },
     ["Meteor Shower"] = {
-        custom = meteorShowerStart()
+        custom = function()
+            
+            end
     },
     ["Thermal Vent"] = {
-        custom = thermalVentStart()
+        custom = function()
+            
+            end
     },
     ["Disease"] = {
-        custom = diseaseStart()
+        custom = function()
+            
+            end
     }
 }
