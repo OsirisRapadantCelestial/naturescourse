@@ -9,8 +9,9 @@ end
 
 function AdaptationsPanel()
 	local pnl = vgui.Create("DFrame")
-	pnl:SetSize(640-5, 360)
+	pnl:SetSize(700, 360)
 	pnl:Center()
+	pnl:ShowCloseButton(false)
 	pnl:MakePopup()
 	local adapations = LocalPlayer():GetAdptations()
 	local slotcount = ADAPTATIONS[LocalPlayer().stats["Body"]].slots
@@ -39,7 +40,6 @@ function AdaptationsPanel()
 			surface.SetDrawColor(0,0,0)
 			surface.DrawOutlinedRect(1,1,w-2,h-2)
 			draw.SimpleTextOffest("Name:"  .. info.Name, "DermaDefault", 5, 5)
-		--	draw.SimpleText("Name:"  .. info.Name, "DermaDefault", 5, 5)
 			surface.SetDrawColor(255,255,255)
 			surface.DrawLine(0,22, w,22)
 		--	surface.SetDrawColor(255/2,255/2,255/2)
@@ -76,7 +76,8 @@ function AdaptationsPanel()
 			surface.DrawLine(1,21, w-2,21)
 			surface.DrawLine(1,23, w-2,23)
 			
-			draw.SimpleText("Adaptation: " .. LocalPlayer().stats.Body, "DermaDefault", 5, 28)
+			--draw.SimpleText("Adaptation: " .. LocalPlayer().stats.Body, "DermaDefault", 5, 28)
+			draw.SimpleTextOffest("Adaptation: " .. LocalPlayer().stats.Body, "DermaDefault", 5, 28)
 		end
 		pnl2:SetText("")
 		pnl2.DoClick = function()
