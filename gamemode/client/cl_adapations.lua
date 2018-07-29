@@ -13,6 +13,10 @@ function AdaptationsPanel()
 	pnl:Center()
 	pnl:ShowCloseButton(false)
 	pnl:MakePopup()
+	pnl.Paint = function(self,w, h) 
+		surface.DrawRect(0,0,w,h)
+		draw.SimpleTextOffest("DNA Points:"  .. LocalPlayer():GetDNA(), "DermaDefault", w-2, h-2, 2, 2)
+	end
 	local adapations = LocalPlayer():GetAdptations()
 	local slotcount = ADAPTATIONS[LocalPlayer().stats["Body"]].slots
 	
