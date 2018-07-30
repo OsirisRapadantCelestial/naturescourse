@@ -4,6 +4,7 @@ tbl.Model = "models/hunter/blocks/cube025x05x025.mdl"
 tbl.type = "Teeth"
 tbl.desc = "Just a bit gummy."
 tbl.default = true
+tbl.cost = 0
 tbl.slots = {
 	[1] = {
 		pos = Vector(0,0, 10),
