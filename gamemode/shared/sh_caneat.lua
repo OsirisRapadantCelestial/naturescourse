@@ -12,5 +12,5 @@ local foodtypes = {
 }
 
 function plymeta:CanEat( foodtype )
-	return foodtypes[foodtype][self.stats["eat"]]
+	return foodtypes[foodtype][self.stats["Teeth"]]
 end
