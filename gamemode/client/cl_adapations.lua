@@ -1,21 +1,24 @@
 
-function draw.SimpleTextOffest(str, txt, x,y, xalig, yalig)
+function draw.SimpleTextOffest(str, txt, x,y, xalig, yalig, col1, col2)
 	if !xalig then xalig = 0 end
 	if !yalig then yalig = 0 end
-	draw.SimpleText(str, txt, x+1, y+1, color_black, xalig, yalig)
-	draw.SimpleText(str, txt, x, y, color_white, xalig, yalig)
+	
+	if !col1 then col1 = color_white end
+	if !col2 then col2 = color_black end
+	
+	draw.SimpleText(str, txt, x+1, y+1, col2, xalig, yalig)
+	draw.SimpleText(str, txt, x, y, col1, xalig, yalig)
 end
 
 
 function AdaptationsPanel()
 	local pnl = vgui.Create("DFrame")
-	pnl:SetSize(700, 360)
+	pnl:SetSize(640, 380)
 	pnl:Center()
 	pnl:ShowCloseButton(false)
 	pnl:MakePopup()
 	pnl.Paint = function(self,w, h) 
-		surface.DrawRect(0,0,w,h)
-		draw.SimpleTextOffest("DNA Points:"  .. LocalPlayer():GetDNA(), "DermaDefault", w-2, h-2, 2, 2)
+		draw.SimpleTextOffest("DNA Points:"  .. LocalPlayer():GetDNA(), "DermaDefault",w-14, h-14, 2, 2)
 	end
 	local adapations = LocalPlayer():GetAdptations()
 	local slotcount = ADAPTATIONS[LocalPlayer().stats["Body"]].slots
@@ -44,6 +47,8 @@ function AdaptationsPanel()
 			surface.SetDrawColor(0,0,0)
 			surface.DrawOutlinedRect(1,1,w-2,h-2)
 			draw.SimpleTextOffest("Name:"  .. info.Name, "DermaDefault", 5, 5)
+			draw.SimpleTextOffest("Cost: " .. info.cost, "DermaDefault", w-5, 5, 2, 2)
+			draw.SimpleTextOffest("Desc: " .. info.desc, "DermaDefault", 5, 5+23)
 			surface.SetDrawColor(255,255,255)
 			surface.DrawLine(0,22, w,22)
 		--	surface.SetDrawColor(255/2,255/2,255/2)
@@ -62,10 +67,27 @@ function AdaptationsPanel()
 	slotscroll:SetSize(640/2,640/2)
 	slotscroll:SetPos(ScrW()/4)
 	
+	local NormalSlots = {
+		[1] = "Body",
+		[2] = "Teeth",
+		[3] = "Fin",
+		[4] = "Gullet",
+	}
+	
+	local offest = 0
+	for index, scar in pairs(NormalSlots) do
 		local pnl2 = vgui.Create("DButton", slotscroll)
 		yy = 50
 		pnl2:SetSize(315, yy)
-		pnl2:SetPos(0,0)
+		
+		if index == 1 then
+			pnl2:SetPos(0,50* (index -1))
+		else
+		
+			pnl2:SetPos(0,55* (index -1))
+			offest = offest + 1
+		
+		end
 		pnl2.Paint = function(self, w,h)
 			surface.SetDrawColor(0,0,0)
 			surface.DrawRect(0,0,w,h)
@@ -73,7 +95,7 @@ function AdaptationsPanel()
 			surface.DrawOutlinedRect(0,0, w,h)
 			surface.SetDrawColor(255/2,255/2,255/2)
 			surface.DrawOutlinedRect(1,1,w-2,h-2)
-			draw.SimpleText("Body", "DermaDefault", 5, 5)
+			draw.SimpleText(scar, "DermaDefault", 5, 5)
 			surface.SetDrawColor(255,255,255)
 			surface.DrawLine(0,22, w,22)
 			surface.SetDrawColor(255/2,255/2,255/2)
@@ -81,7 +103,7 @@ function AdaptationsPanel()
 			surface.DrawLine(1,23, w-2,23)
 			
 			--draw.SimpleText("Adaptation: " .. LocalPlayer().stats.Body, "DermaDefault", 5, 28)
-			draw.SimpleTextOffest("Adaptation: " .. LocalPlayer().stats.Body, "DermaDefault", 5, 28)
+			draw.SimpleTextOffest("Adaptation: " .. LocalPlayer().stats[scar], "DermaDefault", 5, 28)
 		end
 		pnl2:SetText("")
 		pnl2.DoClick = function()
@@ -89,18 +111,18 @@ function AdaptationsPanel()
 				chat.AddText(color_white, "You have not selected an adaptation for your creature!")
 				return
 			end
-			if SelectedItem.type != "Body" then 
-				chat.AddText(color_white, "You have not selected a body adaptation for your creature!")
+			if SelectedItem.type != scar then 
+				chat.AddText(color_white, "You have not selected a " .. scar .." adaptation for your creature!")
 			end
 			
 			
 		end
-	
+	end
 	for index, info in pairs(slotcount) do
 		local pnl2 = vgui.Create("DButton", slotscroll)
 		yy = 50
 		pnl2:SetSize(315, yy)
-		pnl2:SetPos(0,50* (index) + 5)
+		pnl2:SetPos(0,55* (index + offest))
 		pnl2.Paint = function(self, w,h)
 			surface.SetDrawColor(0,0,0)
 			surface.DrawRect(0,0,w,h)
@@ -121,9 +143,13 @@ function AdaptationsPanel()
 			end
 			
 		end
+		pnl2:SetText("")
 		pnl2.DoClick = function()
 			if !SelectedItem then
 				chat.AddText(color_white, "You have not selected an adaptation for your creature!")
+			end
+			if SelectedItem.type == "Body" then
+				chat.AddText(color_white, "You have selected the wrong type of adaptation for this slot!")
 			end
 		end
 	end
