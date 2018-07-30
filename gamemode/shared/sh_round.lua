@@ -26,6 +26,8 @@ function StartRound()
 		ply.stats = {
 			["Teeth"] = "Omnivore",
 			["Body"] = "Basic Body",
+			["Fin"] = "Basic Fin",
+			["Gullet"] = "Basic Gullet",
 			["Slots"] = {},
 			["PH"] = math.random(5,7),
 			["Oxygen"] = math.random(90, 110),
