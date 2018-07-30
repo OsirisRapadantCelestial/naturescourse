@@ -17,7 +17,7 @@ function StartRound()
 
 		for x = 1, 100 do
 			local food = ents.Create("food_meat")
-			food:SetPos(Vector(math.Rand(-1024, 1024),math.Rand(-1024, 1024),0))
+			food:SetPos(Vector(math.Rand(-1024, 1024),math.Rand(-1024, 1024),math.Rand(0,-1024)))
 			food:SetModel("models/weapons/w_bugbait.mdl")
 			food:Spawn()
 			food:Activate()
@@ -42,12 +42,16 @@ function StartRound()
 	SetPH(math.random(5,7))
 	SetOxygen(100)
 	timer.Simple(300, function()
-		EventHappen()
+		EventHappen(300)
 	end)
 end
 
-function EventHappen()
+function EventHappen(oldtime)
 	-- Randomly Choose from events
+	
+	timer.Simple(oldtime/2, function()
+		EventHappen(math.Clamp(oldtime/2, 2, math.huge()))
+	end)
 end
 
 hook.Add("PlayerDeath", "remove entity", function(ply)
