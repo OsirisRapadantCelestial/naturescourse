@@ -12,6 +12,7 @@ function StartRound()
 		ent:Activate()
 		ent:SetPlayer(ply)
 		ply.Entity = ent
+		ply:Spectate( OBS_MODE_CHASE )
 		ply:SpectateEntity(ent)
 
 		for x = 1, 100 do
@@ -27,8 +28,8 @@ function StartRound()
 			["Body"] = "Basic Body",
 			["Slots"] = {},
 			["PH"] = math.random(5,7),
-			["Oxygen"] = math.random(90, 110)
-			["Temperature"] = math.random(18,23)
+			["Oxygen"] = math.random(90, 110),
+			["Temperature"] = math.random(18,23),
 		}
 		net.Start("SendStats")
 			net.WriteEntity(ply)
@@ -58,3 +59,8 @@ hook.Add("PlayerDisconnected", "sadasda", function(ply)
 	ply.Entity:Remove()
 	ply.Entity = nil
 end)
+
+
+function EndRound()
+
+end

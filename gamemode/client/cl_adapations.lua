@@ -53,7 +53,7 @@ function AdaptationsPanel()
 			
 		end
 		pnl2.DoClick = function()
-			SelectedItem = info.Name
+			SelectedItem = info
 		end
 		lastpos = lastpos + yy + 5
 		x = x +1
