@@ -19,4 +19,7 @@ tbl.effects = {
 	["Evolve"] = function(self)
 
 	end,
+	["OnAbilityUsed"] = function(self)
+
+	end,
 }
