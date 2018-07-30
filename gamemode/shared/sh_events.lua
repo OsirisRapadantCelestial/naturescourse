@@ -4,17 +4,17 @@ events = {
     },
     ["Meteor Shower"] = {
         custom = function()
-            
-            end
+
+        end
     },
     ["Thermal Vent"] = {
         custom = function()
-            
-            end
+
+        end
     },
     ["Disease"] = {
         custom = function()
-            
-            end
+
+        end
     }
 }
