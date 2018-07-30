@@ -24,7 +24,7 @@ function StartRound()
 		end
 
 		ply.stats = {
-			["Teeth"] = "Omnivore",
+			["Teeth"] = "Basic Teeth",
 			["Body"] = "Basic Body",
 			["Fin"] = "Basic Fin",
 			["Gullet"] = "Basic Gullet",
