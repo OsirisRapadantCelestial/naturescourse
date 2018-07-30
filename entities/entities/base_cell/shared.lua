@@ -1,7 +1,7 @@
 ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName	= "Base Cell"
-ENT.Author		= "StarLight"
+ENT.Author		= "Star Light"
 ENT.Contact		= ""
 ENT.MaxSpeed 	= 40
 ENT.ShipSpeed = 1

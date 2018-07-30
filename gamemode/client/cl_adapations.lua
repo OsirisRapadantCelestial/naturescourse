@@ -113,9 +113,12 @@ function AdaptationsPanel()
 			end
 			if SelectedItem.type != scar then 
 				chat.AddText(color_white, "You have not selected a " .. scar .." adaptation for your creature!")
+				return
 			end
-			
-			
+			net.Start("Request_Adapations")
+				net.WriteString(scar)
+				net.WriteString(SelectedItem.Name)
+			net.SendToServer()
 		end
 	end
 	for index, info in pairs(slotcount) do

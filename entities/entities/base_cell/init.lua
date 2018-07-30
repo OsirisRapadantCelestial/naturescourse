@@ -67,11 +67,22 @@ function ENT:Think()
 			end
 		end
 
-
+		
+		if (self.NextSub || 0) < CurTime() then
+			local speed = 1
+			
+			if pl.stats["Fin"] then
+				speed = ADAPTATIONS[pl.stats["Fin"]].effects["Speed"](pl, speed)
+			end
+			
+			self.SubSpeed = speed*100
+			self.NextSub = CurTime() + 2
+		end
+		local speed = self.MaxSpeed + self.SubSpeed
 		if pl:KeyDown(IN_FORWARD) then
-			self.Speed = math.Clamp((self.Speed || 0) + 1, -self.MaxSpeed, self.MaxSpeed)
+			self.Speed = math.Clamp((self.Speed || 0) + 1, -speed, speed)
 		elseif pl:KeyDown(IN_BACK) then
-			self.Speed = math.Clamp( (self.Speed || 0) - 1, -self.MaxSpeed, self.MaxSpeed)
+			self.Speed = math.Clamp( (self.Speed || 0) - 1, -speed, speed)
 		else
 			if !self.Speed then self.Speed = 0 end
 			self.Speed = math.Approach(self.Speed, 0, 4)
@@ -95,6 +106,9 @@ local ShadowParams = {
 function ENT:PhysicsSimulate(phys,delta)
     phys:Wake()
     ShadowParams.pos         = self:GetPos() + self:GetForward() * ( (self.Speed || 0) *  (self.ShipSpeed || 10))
+	if ShadowParams.pos.z > 50 then
+		ShadowParams.pos.z = 50
+	end
     ShadowParams.angle         = self.storedangle
     ShadowParams.deltatime     = delta
 
