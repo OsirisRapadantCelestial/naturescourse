@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/OsirisRapdantCelestial/naturalselection/master/logo.png)
+![](https://raw.githubusercontent.com/OsirisRapdantCelestial/naturalselection/master/logo_big.png)
 
 A Garry's Mod Gamemode Competition 2018 Entry
 
