@@ -19,6 +19,8 @@ function ENT:OnAmountChange(name, old, new)
 		self:Remove()
 		return
 	end
-	
+
+	local new = new/16
+
 	self:SetModelScale(new, 0.5)
 end

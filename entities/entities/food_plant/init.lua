@@ -5,8 +5,7 @@ include('shared.lua')
 local bo,ao = Vector(-5,-5,-5),Vector(5,5,5)
 function ENT:Initialize()
 	self:SetModel("models/naturescourse/models/plant_matter.mdl")
-	self:SetSkin( 1 )
-	self:SetAmount( math.random( 5, 10 )  )
+	self:SetAmount( math.random( 4, 9 )  )
 	self:PhysicsInit(SOLID_VPHYSICS)
   --  self:SetMoveType(MOVETYPE_)
     self:SetSolid(SOLID_VPHYSICS)
@@ -16,7 +15,7 @@ function ENT:Initialize()
 	self.Phys:Wake()
 	self.Phys:EnableMotion(false)
 
-	self.foodType = "meat"
+	self.foodType = "plant"
 end
 
 
