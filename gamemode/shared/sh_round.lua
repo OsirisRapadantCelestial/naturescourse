@@ -15,10 +15,19 @@ function StartRound()
 		ply:Spectate( OBS_MODE_CHASE )
 		ply:SpectateEntity(ent)
 
-		for x = 1, 100 do
+		local howmanyplant = math.random( 10, 50 )
+		local howmanymeat = math.random( 5, 50 )
+
+		for x = 1, howmanyplant do
+			local food = ents.Create("food_plant")
+			food:SetPos(Vector(math.Rand(-1024, 1024),math.Rand(-1024, 1024),math.Rand(0,-1024)))
+			food:Spawn()
+			food:Activate()
+		end
+
+		for x = 1, howmanymeat do
 			local food = ents.Create("food_meat")
 			food:SetPos(Vector(math.Rand(-1024, 1024),math.Rand(-1024, 1024),math.Rand(0,-1024)))
-			food:SetModel("models/weapons/w_bugbait.mdl")
 			food:Spawn()
 			food:Activate()
 		end
@@ -48,7 +57,7 @@ end
 
 function EventHappen(oldtime)
 	-- Randomly Choose from events
-	
+
 	timer.Simple(oldtime/2, function()
 		EventHappen(math.Clamp(oldtime/2, 2, math.huge()))
 	end)

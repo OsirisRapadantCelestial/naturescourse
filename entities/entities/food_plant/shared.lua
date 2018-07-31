@@ -20,7 +20,7 @@ function ENT:OnAmountChange(name, old, new)
 		return
 	end
 
-	local new = new/16
+	local new = new/15
 
 	self:SetModelScale(new, 0.5)
 end
