@@ -62,7 +62,7 @@ function ENT:Think()
 				local ang = self:GetAngles()
 				local pos1 = self:GetPos() - ang:Right() * 3 - ang:Up() * 4 + ang:Forward() * 20 
 				local pos2  = self:GetPos() - ang:Up() * 2 + ang:Forward() * 10 + ang:Right() * 3
-				
+				 
 				for index, ent in pairs(ents.FindInBox( pos1, pos2 )) do
 					if string.find(ent:GetClass(), "food_") then
 						ent:SetAmount(ent:GetAmount() - 1)
