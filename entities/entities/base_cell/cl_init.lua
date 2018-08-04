@@ -9,7 +9,7 @@ local Specials = {
 
 local teeth = Material("naturescourse/fins")
 local mat2, name = CreateTexture("teethred",512,512,function(w,h)
-        surface.SetDrawColor(255,0,0)
+        surface.SetDrawColor(100,0,0)
 		surface.SetMaterial(teeth)
         surface.DrawTexturedRect(0,0, w,h)
     end, {
