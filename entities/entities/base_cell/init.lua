@@ -60,8 +60,8 @@ function ENT:Think()
 				self.lastattack = CurTime() + 0.5
 				local pos, ang  = self:GetPos(), self:GetAngles():Forward()
 				local ang = self:GetAngles()
-				local pos1 = self:GetPos() - ang:Right() * 10
-				local pos2  = self:GetPos() + ang:Up() * 10 + ang:Forward() * 100 + ang:Right() * 20
+				local pos1 = self:GetPos() - ang:Right() * 3 - ang:Up() * 4 + ang:Forward() * 20 
+				local pos2  = self:GetPos() - ang:Up() * 2 + ang:Forward() * 10 + ang:Right() * 3
 				
 				for index, ent in pairs(ents.FindInBox( pos1, pos2 )) do
 					if string.find(ent:GetClass(), "food_") then
