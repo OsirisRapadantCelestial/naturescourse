@@ -27,13 +27,18 @@ function GM:ScoreboardShow()
         scoreboardLogo = vgui.Create( "DImageButton", scoreboard )
         scoreboardLogo:SetPos( 45, 0 )
         scoreboardLogo:SetImage( "materials/naturescourse/logo_big.png" )
-        scoreboardLogo:SetSize( 512, 182 )
+        scoreboardLogo:SetSize( 512, 192 )
+        scoreboardLogo.DoClick = function()
+
+            gui.OpenURL( "https://github.com/OsirisRapdantCelestial/naturalselection" )
+
+        end
 
     end
 
     playerScroll = vgui.Create( "DScrollPanel", scoreboard )
     playerScroll:SetSize( scoreboard:GetWide() -20 , scoreboard:GetTall() - 182 )
-    playerScroll:SetPos( 0, 192 )
+    playerScroll:SetPos( 0, 202 )
     local playerScrollBar = playerScroll:GetVBar()
     function playerScrollBar:Paint( w, h )
     end
@@ -61,11 +66,11 @@ function GM:ScoreboardShow()
 
 					local plycolor = LocalPlayer().stats[ "Color" ]
 
-					draw.RoundedBox( 0, 20, 0 +10, players:GetWide(), players:GetTall(), plycolor )
+					draw.RoundedBox( 0, 30, 0 +10, players:GetWide(), players:GetTall(), plycolor )
 
                     draw.SimpleText( v:GetName(), "TestFont", 85, 20, Color( 255, 255, 255, 255 ) )
 
-					draw.SimpleText( v:Ping(), "TestFont", 550, 20, Color( 255, 255, 255, 255 ) )
+					draw.SimpleText( v:Ping(), "TestFont", 530, 20, Color( 255, 255, 255, 255 ) )
 
 					draw.SimpleText( "Wins: " .. LocalPlayer():GetWins(), "TestFont", 325, 20, Color( 255, 255, 255, 255 ) )
 
@@ -77,6 +82,7 @@ function GM:ScoreboardShow()
                 playerAvatar:SetSize( 32, 32 )
                 playerAvatar:SetPos( 40, 14 )
                 playerAvatar:SetPlayer( v, 32 )
+                playerAvatar:SetMouseInputEnabled( false )
 
         end
 
