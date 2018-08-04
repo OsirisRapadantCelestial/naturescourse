@@ -1,4 +1,3 @@
-
 ROUNDSTARTED = false
 
 function StartRound()
@@ -41,6 +40,7 @@ function StartRound()
 			["PH"] = math.random(5,7),
 			["Oxygen"] = math.random(90, 110),
 			["Temperature"] = math.random(18,23),
+			["Color"] = Color( 255, 100, 100, 255 ),
 		}
 		net.Start("SendStats")
 			net.WriteEntity(ply)
