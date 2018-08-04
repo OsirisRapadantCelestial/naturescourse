@@ -61,8 +61,8 @@ function ENT:Draw()
 	local pos, ang  = self:GetPos(), self:GetAngles():Forward()
 				local ang = self:GetAngles()
 	cam.IgnoreZ(true)
-	local pos1 = self:GetPos() - ang:Right() * 3
-				local pos2  = self:GetPos() + ang:Up() * 5 + ang:Forward() * 5 + ang:Right() * 3
+	local pos1 = self:GetPos() - ang:Right() * 3 - ang:Up() * 4 + ang:Forward() * 20 
+				local pos2  = self:GetPos() - ang:Up() * 2 + ang:Forward() * 10 + ang:Right() * 3
 	render.DrawLine( pos1, pos2, color_white)
 	
 	
