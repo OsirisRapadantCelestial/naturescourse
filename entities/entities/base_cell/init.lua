@@ -21,6 +21,7 @@ local Specials = {
 }
 
 function ENT:Initialize()
+	
 	self:SetModel("models/naturescourse/models/creature.mdl")
 	self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
 	

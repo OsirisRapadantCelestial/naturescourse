@@ -11,8 +11,8 @@ function StartRound()
 		ent:Activate()
 		ent:SetPlayer(ply)
 		ply.Entity = ent
-		ply:Spectate( OBS_MODE_CHASE )
-		ply:SpectateEntity(ent)
+		ply:Spectate(OBS_MODE_NONE )
+		--ply:SpectateEntity(ent)
 
 		local howmanyplant = math.random( 10, 50 )
 		local howmanymeat = math.random( 5, 50 )

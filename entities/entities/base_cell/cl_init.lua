@@ -9,7 +9,7 @@ local Specials = {
 
 local teeth = Material("naturescourse/fins")
 local mat2, name = CreateTexture("teethred",512,512,function(w,h)
-        surface.SetDrawColor(100,0,0)
+        surface.SetDrawColor(255,255,255)
 		surface.SetMaterial(teeth)
         surface.DrawTexturedRect(0,0, w,h)
     end, {
@@ -18,7 +18,7 @@ local mat2, name = CreateTexture("teethred",512,512,function(w,h)
 	
 function ENT:Draw()
 	
-	
+	self:SetModelScale(0.25)
 	if LocalPlayer() == self:GetPlayer() then
 		LocalPlayer().FakeEntity = self
 	end
@@ -57,4 +57,13 @@ function ENT:Draw()
 		local PlayerMat = Material(Mats[index+1])
 		PlayerMat:SetTexture("$basetexture", tex)
 	end	
+	
+	local pos, ang  = self:GetPos(), self:GetAngles():Forward()
+				local ang = self:GetAngles()
+	cam.IgnoreZ(true)
+	local pos1 = self:GetPos() - ang:Right() * 3
+				local pos2  = self:GetPos() + ang:Up() * 5 + ang:Forward() * 5 + ang:Right() * 3
+	render.DrawLine( pos1, pos2, color_white)
+	
+	
 end
