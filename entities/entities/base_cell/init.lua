@@ -13,8 +13,15 @@ end
 function ENT:KeyValue(key,value)
 end
 
+
+local Specials = {
+	[1] = "Teeth",
+	[2] = "Fin",
+	[3] = "Gullet",
+}
+
 function ENT:Initialize()
-	self:SetModel("models/hunter/blocks/cube025x05x025.mdl")
+	self:SetModel("models/naturescourse/models/creature.mdl")
 	self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
 	
 	self:PhysicsInit(SOLID_VPHYSICS)

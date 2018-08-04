@@ -46,7 +46,7 @@ auto.AddLuaSHFolder = function(dir,recursive)
         include(f)
     end)
 end
-
+auto.AddLuaSHFolder("libraries",true)
 auto.AddLuaCSFolder("client",true)
 auto.AddLuaSVFolder("server",true)
 auto.AddLuaSHFolder("shared",true)

@@ -1,6 +1,9 @@
 local tbl = {}
 tbl.Name = "Basic Teeth"
-tbl.Model = "models/hunter/blocks/cube025x05x025.mdl"
+tbl.Model = {
+	[1] = {0, false},
+}
+tbl.Color = Color(255,255,255)
 tbl.type = "Teeth"
 tbl.desc = "Just a bit gummy."
 tbl.default = true
@@ -28,8 +31,11 @@ RegisterAdaptation(tbl)
 
 local tbl = {}
 tbl.Name = "Basic Teeth v2"
-tbl.Model = "models/hunter/blocks/cube025x05x025.mdl"
+tbl.Model ={
+	[1] = {1, {"rt_teethred", 0}},
+}
 tbl.type = "Teeth"
+tbl.Color = Color(255,255,0)
 tbl.desc = "Just a bit gummier."
 tbl.default = true
 tbl.cost = 100

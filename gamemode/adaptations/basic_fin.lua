@@ -1,9 +1,11 @@
 local tbl = {}
 tbl.Name = "Basic Fin"
-tbl.Model = "models/hunter/blocks/cube025x05x025.mdl"
+tbl.Model = {
+	[0] = {1, false},
+}
 tbl.desc = ""
+tbl.Color = Color(0,255,0)
 tbl.type = "Fin"
-tbl.scale = 0.5
 tbl.default = true
 tbl.slots = nil
 tbl.cost = 0
