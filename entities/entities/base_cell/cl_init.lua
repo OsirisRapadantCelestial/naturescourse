@@ -49,8 +49,6 @@ function ENT:Draw()
 			local PlayerMat = Material(Mats[index+1])
 			oldtexture[index] = PlayerMat:GetTexture("$basetexture")
 			PlayerMat:SetTexture("$basetexture",mat2:GetTexture("$basetexture"))
-		else
-			--self:SetSubMaterial(index, nil)
 		end
 	end
 	self:DrawModel()
