@@ -1,6 +1,13 @@
 local scoreboard = nil
 local playerList = nil
 
+surface.CreateFont( "TestFont", {
+
+	font = "Arial",
+	size = 20,
+
+})
+
 function GM:ScoreboardShow()
 
     if !IsValid( scoreboard ) then
