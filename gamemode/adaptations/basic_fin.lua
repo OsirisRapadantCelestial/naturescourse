@@ -34,7 +34,7 @@ RegisterAdaptation(tbl)
 
 for x = 1, 10 do
 local tbl = {}
-tbl.Name = "Teir " .. x .. " Fin"
+tbl.Name = "Tier " .. x .. " Fin"
 tbl.Model = {
 	[0] = {1, false},
 }
