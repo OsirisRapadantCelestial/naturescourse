@@ -131,6 +131,8 @@ function EventHappen(oldtime)
 			end
 		end
 		table.Random(tbl):GetPlayer():Spectate(OBS_MODE_ROAMING)
+		local name = table.Random(tbl):GetPlayer():GetName()
+		SendOutMessage( {Color(0,255,0), "[Natural Course] " .. name .. " died from disease." })
 		table.Random(tbl):Remove()
 		CheckRound()
 	end
