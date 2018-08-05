@@ -5,6 +5,7 @@
 	"maps"		"^nc_"
     "version"         "1"
     "menusystem"      "1"
+    "workshopid"      "1466867606"
 
     "author_name"   	"Anthony Fuller, Star, Hawk"
     "author_email"  	"N/A"
