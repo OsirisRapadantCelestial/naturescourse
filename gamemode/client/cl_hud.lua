@@ -22,7 +22,7 @@ function PaintStats()
 	draw.SimpleText("Health: " ..LocalPlayer().FakeEntity:GetNewHealth(), "DermaDefault", 90, 55, Color(255,0,0), 1, 1)
 	end
 	surface.DrawRect(40, 40 + 50, (hung/HUNGER_MAX)*100, 30)
-	draw.SimpleText("XP: " .. hung, "DermaDefault", 90, 105, Color(255,0,0), 1, 1)
+	draw.SimpleText("Food: " .. hung, "DermaDefault", 90, 105, Color(255,0,0), 1, 1)
 
 	surface.DrawRect(40, 40 + 100, ((food-lastlevel)/(nextlevel-lastlevel) )*100, 30)
 	draw.SimpleText("Level: " .. lvl, "DermaDefault", 90, 155, Color(255,0,0), 1, 1)
