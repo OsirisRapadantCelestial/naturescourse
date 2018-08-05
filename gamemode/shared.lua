@@ -1,7 +1,7 @@
-GM.Name = "Natural Selection"
-GM.Author = "OsirisRapadantCelestial - Anthony Fuller, Star, Sion"
-GM.Email = "contact@osirisrapadantcelestial.team"
-GM.Website = "https://osirisrapadantcelestial.team"
+GM.Name = "Nature's Course"
+GM.Author = "Anthony Fuller, Star, Hawk"
+GM.Email = "N/A"
+GM.Website = "N/A"
 
 function GM:Initialize()
 
@@ -68,8 +68,3 @@ function GetRandomAdaptation()
 end
 
 auto.AddLuaSHFolder("adaptations",true)
-
-
-
-
-

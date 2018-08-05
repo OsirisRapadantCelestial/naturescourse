@@ -1,0 +1,12 @@
+"naturescourse"
+{
+    "base"		      "base"
+    "title"  		  "Nature's Course"
+	"maps"		"^nc_"
+    "version"         "1"
+    "menusystem"      "1"
+
+    "author_name"   	"Anthony Fuller, Star, Hawk"
+    "author_email"  	"N/A"
+    "author_url"    	"N/A"
+}
