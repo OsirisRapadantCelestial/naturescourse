@@ -22,25 +22,24 @@ function StartRound()
 		ent:Spawn()
 		ent:Activate()
 		ent:SetPlayer(ply)
-		ply:SetDNA(0)
 		ply:WipeAdaptation()
 		ply.Entity = ent
 		ply:Spectate(OBS_MODE_NONE )
-		
-		
+
+
 		if ply:GetPermaAdpataion() then
 			for x = 1, ply:GetPermaAdpataion() do
 				ply:AddAdaptationSkill(GetRandomAdaptation())
 			end
 		end
-		
-		
+
+
 		--ply:SpectateEntity(ent)
 
 		local howmanyplant = math.random( 10, 100 )
 		local howmanymeat = math.random( 10, 100 )
 		local howmanydna = math.random( 10, 100 )
-		
+
 		for x = 1, howmanyplant do
 			local food = ents.Create("food_plant")
 			food:SetPos(Vector(math.Rand(-spawnpos, spawnpos), math.Rand(-spawnpos, spawnpos), math.Rand(100, spawnpos)) )
@@ -54,7 +53,7 @@ function StartRound()
 			food:Spawn()
 			food:Activate()
 		end
-		
+
 		for x = 1, howmanydna do
 			local food = ents.Create("dna_points")
 			food:SetPos(Vector(math.Rand(-spawnpos, spawnpos), math.Rand(-spawnpos, spawnpos), math.Rand(100, spawnpos)) )
@@ -77,6 +76,8 @@ function StartRound()
 			net.WriteEntity(ply)
 			net.WriteTable(ply.stats)
 		net.Broadcast()
+
+		ply:SetDNA(0)
 	end
 
 	SetPH(math.random(5,7))
@@ -84,18 +85,18 @@ function StartRound()
 	timer.Simple(300, function()
 		EventHappen(300)
 	end)
-	
+
 	timer.Simple(1, function()
 		CheckRound()
 	end)
-	
+
 end
 
 function EventHappen(oldtime)
 	local howmanyplant = math.random( 1, 5 )
 	local howmanymeat = math.random( 1, 5 )
 	local howmanydna = math.random( 1, 5 )
-		
+
 	for x = 1, howmanyplant do
 		local food = ents.Create("food_plant")
 		food:SetPos(Vector(math.Rand(-spawnpos, spawnpos), math.Rand(-spawnpos, spawnpos), math.Rand(100, spawnpos)) )
@@ -109,7 +110,7 @@ function EventHappen(oldtime)
 		food:Spawn()
 		food:Activate()
 	end
-		
+
 	for x = 1, howmanydna do
 		local food = ents.Create("dna_points")
 		food:SetPos(Vector(math.Rand(-spawnpos, spawnpos), math.Rand(-spawnpos, spawnpos), math.Rand(100, spawnpos)) )
@@ -120,7 +121,7 @@ function EventHappen(oldtime)
 	timer.Simple(oldtime/2, function()
 		EventHappen(math.Clamp(oldtime/2, 60, 300))
 	end)
-	
+
 	if CurTime() - ROUNDSTARTED  > 600 then
 		ROUNDSTARTED = CurTime() - 400
 		local tbl = {}
@@ -133,13 +134,13 @@ function EventHappen(oldtime)
 		table.Random(tbl):Remove()
 		CheckRound()
 	end
-	
-	
+
+
 end
 
 function CheckRound()
 	local count = 0
-	
+
 	for index, ply in pairs(player.GetAll()) do
 		if IsValid(ply.Entity) then
 			count = count + 1
@@ -150,19 +151,21 @@ function CheckRound()
 		CheckRound()
 		end)
 	return end -- Round is fine
-	local pl = nil 
-	
+	local pl = nil
+
 	for index, ply in pairs(player.GetAll()) do
 		if IsValid(ply.Entity) then
 			pl = ply
 		end
 	end
-	
-	pl:AddPermaAdpataion(1)
-	
+
+	if IsValid(pl) then
+		pl:AddPermaAdpataion(1)
+	end
+
 	local p = nil
 	local val = 0
-	
+
 	for index, ply in pairs(player.GetAll()) do
 		if ply:GetFood() > val then
 			val = ply:GetFood()
@@ -170,25 +173,25 @@ function CheckRound()
 		end
 	end
 	p:AddPermaAdpataion(1)
-	
+
 	SendOutMessage( {Color(0,255,0), "[Natural Course] Round Over! New round starting in 5" })
-	
-	
-	
+
+
+
 	for index, ply in pairs(player.GetAll()) do
 		if IsValid(ply.Entity) then
 			ply.Entity:Remove()
 		end
-		
+
 		if ply == p or ply == pl then
 			ply:AddWin(1)
 		else
 			ply:AddLoss(1)
 		end
-		
+
 	end
-	
-	
+
+
 	for index, ent in pairs(ents.FindByClass("food_meat"))  do
 		ent:Remove()
 	end
@@ -200,7 +203,7 @@ function CheckRound()
 	for index, ent in pairs(ents.FindByClass("dna_points"))  do
 		ent:Remove()
 	end
-	
+
 	timer.Simple(5, function()
 		StartRound()
 	end)
