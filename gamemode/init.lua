@@ -4,7 +4,8 @@ AddCSLuaFile( "shared.lua" )
 include( "shared.lua" )
 
 function GM:Initialize()
-    print( "Natural Selection Gamemode Loaded" ) -- Temp message
+    print( "Natural Selection Gamemode Loaded" )
+    resource.AddWorkshop( 1466867606 ) 
 end
 
 
