@@ -35,7 +35,7 @@ local tb = {
 for index, type in pairs(tb) do
 	for x = 1, 10 do
 		local tbl = {}
-		tbl.Name = "Teir " .. x .. " Teeth " .. type
+		tbl.Name = "Tier " .. x .. " Teeth " .. type
 		tbl.Model ={
 			[1] = {2-(1+index)%2, false},
 		}
