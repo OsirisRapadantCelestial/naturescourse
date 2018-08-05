@@ -139,18 +139,24 @@ function EventHappen(oldtime)
 end
 
 function CheckRound()
-	local count = 0
+	    local count = 0
 
-	for index, ply in pairs(player.GetAll()) do
+	    for index, ply in pairs(player.GetAll()) do
 		if IsValid(ply.Entity) then
-			count = count + 1
+		    count = count + 1
 		end
-	end
-	if count >= 2 then
+	    end
+
+	    if !ROUNDSTARTED then return end
+
+	    if count >= 2 then
 		timer.Simple(1, function()
 		CheckRound()
 		end)
-	return end -- Round is fine
+	    return end -- Round is fine
+
+	 ROUNDSTARTED = false
+
 	local pl = nil
 
 	for index, ply in pairs(player.GetAll()) do
