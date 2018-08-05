@@ -13,6 +13,9 @@ end
 
 function AdaptationsPanel()
 	if !LocalPlayer().stats then return end
+
+    	if !LocalPlayer().stats["Body"] then return end
+	
 	local pnl = vgui.Create("DFrame")
 	pnl:SetSize(640, 380)
 	pnl:Center()
