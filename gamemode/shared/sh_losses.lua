@@ -6,21 +6,23 @@ if SERVER then
 
     function plymeta:AddLoss( amount )
 		local losses = self:GetWins()
-		self:SetWins(losses + amount)
+		self:SetLosses(losses + amount)
     end
 
     function plymeta:SetLosses( amount )
 		self.losses = amount
 		net.Start("Losses")
+			net.WriteEntity(self)
 			net.WriteDouble(amount)
-		net.Send( self )
+		net.Broadcast()
     end
 
 else
 
     net.Receive( "Losses", function( len, pl )
-        if not LocalPlayer().losses then LocalPlayer().losses = 0 end
-		LocalPlayer().losses = net.ReadDouble()
+		local ent = net.ReadEntity()
+        if not ent.losses then ent.losses = 0 end
+		ent.losses = net.ReadDouble()
     end)
 
 end

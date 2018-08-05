@@ -9,14 +9,24 @@ if SERVER then
 	util.AddNetworkString("AddPart")
 	util.AddNetworkString("UpdatePart")
 	util.AddNetworkString("Request_Adapations")
-
+	util.AddNetworkString("wipe_adapt")
+	
+	
 	function meta:AddAdaptationSkill(name)
 		if ADAPTATIONS[name] and !self:HasAdaptation(name) then
+			if !self.adaptations then self.adaptations = {} end
 			self.adaptations[name] = ADAPTATIONS[name]
 			net.Start("AddAdaptation")
 				net.WriteString(name)
 			net.Send(self)
 		end
+	end
+	
+	
+	function meta:WipeAdaptation()
+		self.adaptations = {}
+		net.Start("wipe_adapt")
+		net.Send(self)
 	end
 	
 	function meta:UpdateSkillSlot(num, adapt)
@@ -36,9 +46,12 @@ if SERVER then
 		local adapt = net.ReadString()
 		
 		if ply:HasAdaptation(adapt) then
-			-- Check Cost here
-		
-			ply:UpdatePart(part, adapt)
+			if ply:GetDNA() > ADAPTATIONS[adapt].cost then
+				if ply.stats[part] == adapt then return end
+			
+				ply:AddDNA( -ADAPTATIONS[adapt].cost )
+				ply:UpdatePart(part, adapt)
+			end
 		end
 	end)
 	
@@ -60,9 +73,12 @@ if SERVER then
 		if  !Parts[part] then return end
 		if Parts[part] == 2 then
 			local slots = self.stats["Slots"]
+			
+
+			
 			-- Clear slots
 		end
-		
+		self.stats[part] = adapt
 		net.Start("UpdatePart")
 			net.WriteEntity(self)
 			net.WriteString(part)
@@ -91,13 +107,16 @@ else
 		local self = LocalPlayer()
 		local str = net.ReadString()
 		if! self.adaptations then self.adaptations = {} end
-		self.adaptations[str] = ADAPTATIONS[name]
+		self.adaptations[str] = ADAPTATIONS[str]
 	end)
 
+	net.Receive("wipe_adapt", function()
+		LocalPlayer().adaptations = {}
+	end)
 end
 
 function meta:GetAdptations()
-	return ADAPTATIONS
+	return self.adaptations || {}
 end
 
 function meta:HasAdaptation(adapt)

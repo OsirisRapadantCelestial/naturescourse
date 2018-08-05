@@ -37,7 +37,7 @@ function GM:ScoreboardShow()
     end
 
     playerScroll = vgui.Create( "DScrollPanel", scoreboard )
-    playerScroll:SetSize( scoreboard:GetWide() -20 , scoreboard:GetTall() - 182 )
+    playerScroll:SetSize( scoreboard:GetWide() -20 , scoreboard:GetTall() - 215 )
     playerScroll:SetPos( 0, 202 )
     local playerScrollBar = playerScroll:GetVBar()
     function playerScrollBar:Paint( w, h )
@@ -65,16 +65,16 @@ function GM:ScoreboardShow()
                 if !IsValid(v) then return end
 
 					local plycolor = LocalPlayer().stats[ "Color" ]
-
+					if !plycolor then plycolor = Color(150,150,150) end
 					draw.RoundedBox( 0, 30, 0 +10, players:GetWide(), players:GetTall(), plycolor )
 
                     draw.SimpleText( v:GetName(), "TestFont", 85, 20, Color( 255, 255, 255, 255 ) )
 
 					draw.SimpleText( v:Ping(), "TestFont", 530, 20, Color( 255, 255, 255, 255 ) )
 
-					draw.SimpleText( "Wins: " .. LocalPlayer():GetWins(), "TestFont", 325, 20, Color( 255, 255, 255, 255 ) )
+					draw.SimpleText( "Wins: " .. v:GetWins(), "TestFont", 325, 20, Color( 255, 255, 255, 255 ) )
 
-					draw.SimpleText( "Losses: " .. LocalPlayer():GetLosses(), "TestFont", 425, 20, Color( 255, 255, 255, 255 ) )
+					draw.SimpleText( "Losses: " .. v:GetLosses(), "TestFont", 425, 20, Color( 255, 255, 255, 255 ) )
 
                 end
 

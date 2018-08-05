@@ -57,13 +57,5 @@ function ENT:Draw()
 		local PlayerMat = Material(Mats[index+1])
 		PlayerMat:SetTexture("$basetexture", tex)
 	end	
-	
-	local pos, ang  = self:GetPos(), self:GetAngles():Forward()
-				local ang = self:GetAngles()
-	cam.IgnoreZ(true)
-	local pos1 = self:GetPos() - ang:Right() * 3 - ang:Up() * 4 + ang:Forward() * 20 
-				local pos2  = self:GetPos() - ang:Up() * 2 + ang:Forward() * 10 + ang:Right() * 3
-	render.DrawLine( pos1, pos2, color_white)
-	
-	
+	self:SetBodygroup(5, 1)
 end

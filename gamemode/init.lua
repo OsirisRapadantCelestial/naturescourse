@@ -21,5 +21,15 @@ function GM:PlayerSpawn(ply)
 		end
 	else
 		ply:Spectate(OBS_MODE_ROAMING)
+		
+		for index, pl in pairs(player.GetAll()) do
+			if IsValid(pl.Entity) then
+				net.Start("SendStats")
+					net.WriteEntity(pl)
+					net.WriteTable(pl.stats)
+				net.Send(ply)
+			end
+		end
+		
 	end
 end

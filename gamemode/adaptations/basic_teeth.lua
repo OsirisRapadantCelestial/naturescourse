@@ -16,8 +16,8 @@ tbl.effects = {
 	["Skill"] = function(self)
 
 	end,
-	["Damage"] = function(self)
-
+	["Damage"] = function(self, dmg)
+		return dmg
 	end,
 	["Death"] = function(self)
 
@@ -27,34 +27,41 @@ tbl.effects = {
 	end,
 }
 RegisterAdaptation(tbl)
-
-
-local tbl = {}
-tbl.Name = "Basic Teeth v2"
-tbl.Model ={
-	[1] = {1, {"rt_teethred", 0}},
+local tb = {
+	"Carnivore",
+	"Herbivore",
+	"Omnivore",
 }
-tbl.type = "Teeth"
-tbl.Color = Color(255,255,0)
-tbl.desc = "Just a bit gummier."
-tbl.default = true
-tbl.cost = 100
-tbl.Teeth = "Omnivore"
-tbl.effects = {
-	["HUD"] = function(self)
+for index, type in pairs(tb) do
+	for x = 1, 10 do
+		local tbl = {}
+		tbl.Name = "Teir " .. x .. " Teeth " .. type
+		tbl.Model ={
+			[1] = {2-(1+index)%2, false},
+		}
+		tbl.type = "Teeth"
+		tbl.Color = Color(255,255,0)
+		tbl.desc = "Teeth which do " .. x .. " times damage"
+		tbl.default = true
+		tbl.cost = x * 20
+		tbl.Teeth = type
+		tbl.effects = {
+			["HUD"] = function(self)
 
-	end,
-	["Skill"] = function(self)
+			end,
+			["Skill"] = function(self)
 
-	end,
-	["Damage"] = function(self)
+			end,
+			["Damage"] = function(self, dmg)
+				return dmg * x
+			end,
+			["Death"] = function(self)
 
-	end,
-	["Death"] = function(self)
+			end,
+			["Evolve"] = function(self)
 
-	end,
-	["Evolve"] = function(self)
-
-	end,
-}
-RegisterAdaptation(tbl)
+			end,
+		}
+		RegisterAdaptation(tbl)
+	end
+end

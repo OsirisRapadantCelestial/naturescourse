@@ -19,8 +19,9 @@ if SERVER then
 else
 
     net.Receive( "Wins", function( len, pl )
-        if not LocalPlayer().wins then LocalPlayer().wins = 0 end
-		LocalPlayer().wins = net.ReadDouble()
+		local ent = net.ReadEntity()
+        if not ent.wins then ent.wins = 0 end
+		ent.wins = net.ReadDouble()
     end)
 
 end

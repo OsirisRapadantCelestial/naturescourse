@@ -12,9 +12,11 @@ end
 
 
 function AdaptationsPanel()
+	if !LocalPlayer().stats then return end
 	local pnl = vgui.Create("DFrame")
 	pnl:SetSize(640, 380)
 	pnl:Center()
+	pnl:SetTitle("")
 	pnl:ShowCloseButton(false)
 	pnl:MakePopup()
 	pnl.Paint = function(self,w, h) 
@@ -31,6 +33,8 @@ function AdaptationsPanel()
 	adapationsscroll:SetSize(640/2,640/2)
 	local lastpos = 0
 	local x = 1
+	if adapations then
+	end
 	for index, info in pairs(adapations) do
 
 		local pnl2 = vgui.Create("DButton", adapationsscroll)
@@ -47,7 +51,7 @@ function AdaptationsPanel()
 			surface.SetDrawColor(0,0,0)
 			surface.DrawOutlinedRect(1,1,w-2,h-2)
 			draw.SimpleTextOffest("Name:"  .. info.Name, "DermaDefault", 5, 5)
-			draw.SimpleTextOffest("Cost: " .. info.cost, "DermaDefault", w-5, 5, 2, 2)
+			draw.SimpleTextOffest("Cost: " .. info.cost, "DermaDefault", w-20, 5, 2, 2)
 			draw.SimpleTextOffest("Desc: " .. info.desc, "DermaDefault", 5, 5+23)
 			surface.SetDrawColor(255,255,255)
 			surface.DrawLine(0,22, w,22)
@@ -65,18 +69,19 @@ function AdaptationsPanel()
 	end
 	slotscroll = vgui.Create("DScrollPanel", pnl)
 	slotscroll:SetSize(640/2,640/2)
-	slotscroll:SetPos(ScrW()/4)
+	slotscroll:SetPos(640/2)
 	
 	local NormalSlots = {
 		[1] = "Body",
 		[2] = "Teeth",
 		[3] = "Fin",
-		[4] = "Gullet",
 	}
 	
 	local offest = 0
 	for index, scar in pairs(NormalSlots) do
+		LocalPlayer():ChatPrint("YOU GOT ADAPT 2")
 		local pnl2 = vgui.Create("DButton", slotscroll)
+		LocalPlayer():ChatPrint("YOU GOT ADAPT 3")
 		yy = 50
 		pnl2:SetSize(315, yy)
 		
@@ -142,7 +147,7 @@ function AdaptationsPanel()
 			if LocalPlayer().stats[index] then
 				draw.SimpleText("Equipped: " .. LocalPlayer().Stats[index].Name, "DermaDefault", 5, 28)
 			else
-				draw.SimpleText("Equipped: Nothing", "DermaDefault", 5, 28)
+				draw.SimpleText("To do later", "DermaDefault", 5, 28)
 			end
 			
 		end

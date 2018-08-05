@@ -10,11 +10,22 @@ if SERVER then
     end
 
     function plymeta:SetDNA( amount )
+		self.stats["DNA"] = amount
 		net.Start("DNA")
 			net.WriteDouble(amount)
 		net.Send( self )
     end
 
+	
+	function plymeta:GetPermaAdpataion()
+		return self.permaadap || nil
+	end
+	
+	function plymeta:AddPermaAdpataion(num)
+		self.permaadap = (self.permaadap || 0) + num
+	end
+	
+	
 else
 
     net.Receive( "DNA", function( len, pl )

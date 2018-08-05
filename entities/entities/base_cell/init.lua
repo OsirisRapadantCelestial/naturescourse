@@ -65,17 +65,59 @@ function ENT:Think()
 				 
 				for index, ent in pairs(ents.FindInBox( pos1, pos2 )) do
 					if string.find(ent:GetClass(), "food_") then
-						ent:SetAmount(ent:GetAmount() - 1)
-						pl:AddHunger(1)
-						pl:AddFood(0.5)
+						if pl:CanEat( ent.foodType ) then
+							local speed = 1
+				
+							if pl.stats["Fin"] then
+								speed = ADAPTATIONS[pl.stats["Teeth"]].effects["Damage"](pl, speed)
+							end
+							if !speed then speed = 1 end
+							ent:SetAmount(ent:GetAmount() - speed)
+							pl:AddHunger(1)
+							pl:AddFood(0.5)
+							pl:AddDNA(math.random(1,3) )
+						end
+					elseif ent:GetClass() == "base_cell" and ent != self then
+							local speed = 1
+							if pl.stats["Fin"] then
+								speed = ADAPTATIONS[pl.stats["Teeth"]].effects["Damage"](pl, speed)
+							end
+							if !speed then speed = 1 end
+						ent:SetNewHealth(ent:GetNewHealth() - speed )
 					end
 				end
 				
+				local pos1 = self:GetPos() - ang:Right() * 3 - ang:Up() * 4 + ang:Forward() * 50 
+				local pos2  = self:GetPos() - ang:Up() * 2 + ang:Forward() * 10 + ang:Right() * 3
+				 
+				for index, ent in pairs(ents.FindInBox( pos1, pos2 )) do
+					if ent:GetClass() == "base_cell" and ent != self then
+							local speed = 1
+							if pl.stats["Fin"] then
+								speed = ADAPTATIONS[pl.stats["Teeth"]].effects["Damage"](pl, speed)
+							end
+							if !speed then speed = 1 end
+							pl:AddFood(0.5)
+						ent:SetNewHealth(ent:GetNewHealth() - speed )
+						if ent:GetNewHealth() < 1 then
+							SendOutMessage( {Color(255,0,0), "[Natural Course] Player " .. ent:GetPlayer():Nick() .. " has been killed by " .. self:GetPlayer():Nick() })
+						end
+					end
+				end
 				
+				for index, ent in pairs(ents.FindInSphere(self:GetPos(), 100)) do
+					if ent:GetClass() == "dna_points" then
+						pl:AddAdaptationSkill(ent.Adapation)
+						ent:Remove()
+					end
+				end
 			end
 		end
 
-		
+		if self:GetNewHealth() < 1 then
+			self:GetPlayer():Spectate(OBS_MODE_ROAMING)
+			self:Remove()
+		end
 		if (self.NextSub || 0) < CurTime() then
 			local speed = 1
 			
@@ -83,14 +125,14 @@ function ENT:Think()
 				speed = ADAPTATIONS[pl.stats["Fin"]].effects["Speed"](pl, speed)
 			end
 			
-			self.SubSpeed = speed*100
+			self.SubSpeed = speed
 			self.NextSub = CurTime() + 2
 		end
 		local speed = self.MaxSpeed + self.SubSpeed
 		if pl:KeyDown(IN_FORWARD) then
-			self.Speed = math.Clamp((self.Speed || 0) + 1, -speed, speed)
+			self.Speed = math.Clamp((self.Speed || 0) + 5, -speed, 200)
 		elseif pl:KeyDown(IN_BACK) then
-			self.Speed = math.Clamp( (self.Speed || 0) - 1, -speed, speed)
+			self.Speed = math.Clamp( (self.Speed || 0) - 5, -speed, 200)
 		else
 			if !self.Speed then self.Speed = 0 end
 			self.Speed = math.Approach(self.Speed, 0, 4)
@@ -104,7 +146,7 @@ local ShadowParams = {
     secondstoarrive     = 1,
     maxangular             = 1000,
     maxangulardamp         = 10000,
-    maxspeed             = 1000000,
+    maxspeed             = 200,
     maxspeeddamp         = 10000,
     dampfactor             = 0.8,
     teleportdistance     = 200,
@@ -114,8 +156,8 @@ local ShadowParams = {
 function ENT:PhysicsSimulate(phys,delta)
     phys:Wake()
     ShadowParams.pos         = self:GetPos() + self:GetForward() * ( (self.Speed || 0) *  (self.ShipSpeed || 10))
-	if ShadowParams.pos.z > 50 then
-		ShadowParams.pos.z = 50
+	if ShadowParams.pos.z > 8704 then
+		ShadowParams.pos.z = 8704
 	end
     ShadowParams.angle         = self.storedangle
     ShadowParams.deltatime     = delta

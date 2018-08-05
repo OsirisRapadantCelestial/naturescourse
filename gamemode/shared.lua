@@ -53,11 +53,18 @@ auto.AddLuaSHFolder("shared",true)
 
 ADAPTATIONS = {}
 DEFAULTCELL = {}
+ADAPTATIONTBL = {}
 function RegisterAdaptation(tbl)
 	ADAPTATIONS[tbl.Name] = tbl
+	ADAPTATIONTBL[#ADAPTATIONTBL + 1] = tbl.Name
 	if tbl.Default then
 		DEFAULTCELL[tbl.type] = tbl.Name
 	end
+end
+
+
+function GetRandomAdaptation()
+	return table.Random(ADAPTATIONTBL)
 end
 
 auto.AddLuaSHFolder("adaptations",true)
