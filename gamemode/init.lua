@@ -5,7 +5,7 @@ include( "shared.lua" )
 
 function GM:Initialize()
     print( "Natural Selection Gamemode Loaded" )
-    resource.AddWorkshop( 1466867606 ) 
+    resource.AddWorkshop( "1466867606" ) 
 end
 
 
