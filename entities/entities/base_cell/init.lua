@@ -51,8 +51,10 @@ end
 function ENT:Think()
 	if self:GetPlayer() then
 		local pl 	= self:GetPlayer()
-		if pl:KeyDown(IN_ATTACK2) then
+		if IsValid(pl:KeyDown(IN_ATTACK2)) then
 			self.storedangle = pl:EyeAngles()
+		else
+			self:Remove()
 		end
 
 		if pl:KeyDown(IN_ATTACK) then
