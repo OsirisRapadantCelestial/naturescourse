@@ -16,9 +16,10 @@ function GM:PlayerSpawn(ply)
 	
 	if !ROUNDSTARTED then
 		if #player.GetAll() > 1 then
-            timer.Simple(1, function()
-                StartRound()
-            end )
+            		timer.Simple(1, function()
+                		StartRound()
+            		end )
+		end
 	else
 		ply:Spectate(OBS_MODE_ROAMING)
 		
