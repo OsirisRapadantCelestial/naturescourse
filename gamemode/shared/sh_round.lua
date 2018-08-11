@@ -130,10 +130,11 @@ function EventHappen(oldtime)
 				tbl[#tbl+1] = ply.Entity
 			end
 		end
-		table.Random(tbl):GetPlayer():Spectate(OBS_MODE_ROAMING)
-		local name = table.Random(tbl):GetPlayer():GetName()
+		local ply = table.Random(tbl)
+		ply:GetPlayer():Spectate(OBS_MODE_ROAMING)
+		local name = ply:GetPlayer():GetName()
 		SendOutMessage( {Color(0,255,0), "[Natural Course] " .. name .. " died from disease." })
-		table.Random(tbl):Remove()
+		ply:Remove()
 		CheckRound()
 	end
 
@@ -220,6 +221,7 @@ end
 hook.Add("PlayerDeath", "remove entity", function(ply)
 	ply.OutOfGame = true
 	ply.Entity:Remove()
+		ply:Spectate(OBS_MODE_ROAMING)
 	ply.Entity = nil
 end)
 
