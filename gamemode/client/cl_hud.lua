@@ -44,31 +44,39 @@ function PaintStats()
 	draw.SimpleText("Q = Open Adaptation Panel", "DermaDefault" , 40, ScrH()/2 + 140)
 	-- \n\n\nW = Forward\nS = Backwards\nRight Click = Turn\nLeft Click = Pickup / Attack"
 	
+	local pos = LocalPlayer():GetPos()
+	
 	for index, ent in pairs(ents.FindByClass("food_meat"))  do
-		local tbl = ent:GetPos():ToScreen()
-		if tbl.visible then
-			surface.SetDrawColor(255, 0, 0)
-			surface.SetMaterial(icon)
-			surface.DrawTexturedRect(tbl.x-15, tbl.y-15, 30, 30)
+		if ent:GetPos():Distance(pos) < 2048 then
+			local tbl = ent:GetPos():ToScreen()
+			if tbl.visible then
+				surface.SetDrawColor(255, 0, 0)
+				surface.SetMaterial(icon)
+				surface.DrawTexturedRect(tbl.x-15, tbl.y-15, 30, 30)
+			end
 		end
+		
 	end
 
 	for index, ent in pairs(ents.FindByClass("food_plant"))  do
-		local tbl = ent:GetPos():ToScreen()
-		if tbl.visible then
-			surface.SetDrawColor(0, 255, 0)
-			surface.SetMaterial(icon)
-			surface.DrawTexturedRect(tbl.x-15, tbl.y-15, 30, 30)
+		if ent:GetPos():Distance(pos) < 2048 then
+			local tbl = ent:GetPos():ToScreen()
+			if tbl.visible then
+				surface.SetDrawColor(0, 255, 0)
+				surface.SetMaterial(icon)
+				surface.DrawTexturedRect(tbl.x-15, tbl.y-15, 30, 30)
+			end
 		end
 	end
 
 	for index, ent in pairs(ents.FindByClass("dna_points"))  do
-		local tbl = ent:GetPos():ToScreen()
-		if tbl.visible then
-			surface.SetDrawColor(255, 255, 255)
-			surface.SetMaterial(icon)
-			surface.DrawTexturedRect(tbl.x-15, tbl.y-15, 30, 30)
-		end
+		if ent:GetPos():Distance(pos) < 2048 then
+			local tbl = ent:GetPos():ToScreen()
+			if tbl.visible then
+				surface.SetDrawColor(255, 255, 255)
+				surface.SetMaterial(icon)
+				surface.DrawTexturedRect(tbl.x-15, tbl.y-15, 30, 30)
+		end	end
 	end
 	
 	for index, ent in pairs(ents.FindByClass("base_cell")) do
