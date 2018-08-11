@@ -140,7 +140,7 @@ function ENT:Think()
 			self.Speed = math.Clamp( (self.Speed || 0) - 5, -speed, 200)
 		else
 			if !self.Speed then self.Speed = 0 end
-			self.Speed = math.Approach(self.Speed, 0, 4)
+			self.Speed = math.Approach(self.Speed, 0, 40)
 		end
 
 		if !self.storedangle then self.storedangle = self:GetAngles() end
@@ -154,7 +154,7 @@ local ShadowParams = {
     maxspeed             = 200,
     maxspeeddamp         = 10000,
     dampfactor             = 0.8,
-    teleportdistance     = 200,
+    teleportdistance     = 2000,
     deltatime             = deltatime
 }
 
