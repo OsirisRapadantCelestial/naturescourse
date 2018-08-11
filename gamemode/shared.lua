@@ -7,6 +7,10 @@ function GM:Initialize()
 
 end
 
+function GM:PlayerFootstep(ply)
+	return true
+end
+
 local auto = {}
 
 local function ExecuteOnFolder(dir, recursive, func)
